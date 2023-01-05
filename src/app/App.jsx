@@ -1,14 +1,25 @@
-import { Provider } from 'react-redux';
+import { Grid } from '@geist-ui/react';
 
-import store from './store.js';
+import Editor from 'features/Editor/Editor.jsx';
+import Sidebar from 'entities/Sidebar/Sidebar.jsx';
 
-import './App.css';
+import 'app/App.css';
 
 function App() {
 	return (
-		<Provider store={store}>
-			<div>PenPal</div>
-		</Provider>
+		<Grid.Container>
+			<Grid
+				xs={5}
+				height='100vh'
+				direction='column'
+				alignItems='center'
+			>
+				<Sidebar />
+			</Grid>
+			<Grid xs={18}>
+				<Editor />
+			</Grid>
+		</Grid.Container>
 	);
 }
 
