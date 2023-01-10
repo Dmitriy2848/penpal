@@ -7,8 +7,6 @@ import {
 	FilePlus
 } from '@geist-ui/icons';
 
-// todo сделай компонент кнопки который пропрсом принимает текст тултипа и иконку кнопки
-
 const Header = () => {
 	const [isExpanded, setIsExpand] = useState(false);
 	const buttonExpand = () => {
@@ -21,6 +19,7 @@ const Header = () => {
 				text='Создать папку'
 				scale={0.5}
 				type={'dark'}
+				leaveDelay={0}
 			>
 				<Button
 					type='abort'
@@ -34,6 +33,7 @@ const Header = () => {
 				text='Создать файл'
 				scale={0.5}
 				type={'dark'}
+				leaveDelay={0}
 			>
 				<Button
 					type='abort'
@@ -47,6 +47,7 @@ const Header = () => {
 				text={isExpanded ? 'Развернуть' : 'Свернуть'}
 				scale={0.5}
 				type={'dark'}
+				leaveDelay={0}
 			>
 				<Button
 					type='abort'
