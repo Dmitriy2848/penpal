@@ -9,11 +9,6 @@ const StyledButton = styled.button`
 
 	padding: 10px;
 
-	border-width: 1px;
-	border-style: solid;
-	border-color: #eaeaea;
-	border-left: none;
-	border-right: none;
 	outline: none;
 	background-color: transparent;
 	cursor: pointer;
@@ -40,12 +35,13 @@ const StyledButton = styled.button`
 `;
 // todo подумай над ренеймом пропсов
 const PopoverContent = ({ shortcut }) => {
+	const keyList = shortcut.split(' ');
 	return (
 		<Popover.Item
 			scale={1 / 2}
 			type='dark'
 		>
-			{shortcut.map((el, i) => (
+			{keyList.map((el, i) => (
 				<Keyboard
 					scale={1 / 2}
 					key={i}

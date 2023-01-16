@@ -7,7 +7,14 @@ const Container = styled.div`
 	border-radius: 5px;
 	margin: 16px auto;
 	& > div {
-		border: none;
+		& button {
+			border-width: 1px;
+			border-style: solid;
+			border-color: #eaeaea;
+			border-left: none;
+			border-right: none;
+		}
+
 		&:first-child {
 			border-left: 1px solid #eaeaea;
 		}

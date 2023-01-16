@@ -2,9 +2,6 @@ import styled, { css } from 'styled-components';
 
 const Wrapper = styled.div`
 	display: flex;
-	border-width: 1px;
-	border-color: #eaeaea;
-	border-style: solid;
 	height: 100%;
 
 	${({ first }) =>
