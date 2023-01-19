@@ -1,7 +1,7 @@
 import { Grid } from '@geist-ui/react';
 
 import Editor from 'features/Editor/Editor.jsx';
-import Sidebar from 'entities/Sidebar/Sidebar.jsx';
+import Sidebar from 'widgets/Sidebar/Sidebar.jsx';
 
 import 'app/App.css';
 

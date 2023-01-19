@@ -19,7 +19,6 @@ const StyledItem = styled(Button)`
 `;
 
 const Item = ({ icon, onClick, ...props }) => {
-	console.log(icon);
 	return (
 		<StyledItem
 			onClick={() => onClick()}

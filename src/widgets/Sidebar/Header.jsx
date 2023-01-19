@@ -6,13 +6,20 @@ import {
 	FolderPlus,
 	FilePlus
 } from '@geist-ui/icons';
+import { useDispatch } from 'react-redux';
+import {
+	addFile,
+	addFolder,
+	changeExpand
+} from 'features/FileTree/model/fileTreeSlice.js';
 
 const Header = () => {
 	const [isExpanded, setIsExpand] = useState(false);
 	const buttonExpand = () => {
 		setIsExpand((prevState) => !prevState);
+		dispatch(changeExpand());
 	};
-
+	const dispatch = useDispatch();
 	return (
 		<Grid>
 			<Tooltip
@@ -26,6 +33,7 @@ const Header = () => {
 					icon={<FolderPlus />}
 					auto
 					px={0.6}
+					onClick={() => dispatch(addFolder('newFolder'))}
 				/>
 			</Tooltip>
 
@@ -41,6 +49,7 @@ const Header = () => {
 					auto
 					px={0.6}
 					mx='5px'
+					onClick={() => dispatch(addFile('newFile'))}
 				/>
 			</Tooltip>
 			<Tooltip

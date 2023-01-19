@@ -8,6 +8,7 @@ const Container = styled.div`
 	padding: 10px;
 	background-color: #eaeaea;
 	border-radius: 5px;
+	z-index: 99;
 `;
 
 export default Container;

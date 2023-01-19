@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import notesSlice from '../features/notesSlice';
+import fileTreeSlice from 'features/FileTree/model/fileTreeSlice.js';
+
 export default configureStore({
 	reducer: {
-		notes: notesSlice
+		fileTree: fileTreeSlice
 	}
 });

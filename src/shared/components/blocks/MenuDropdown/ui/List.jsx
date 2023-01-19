@@ -41,7 +41,6 @@ const StyledList = styled.div`
 `;
 
 const List = ({ isActive, items, closeHandler }) => {
-	console.log(items);
 	const clickHandler = (onClick) => {
 		onClick();
 		closeHandler();
