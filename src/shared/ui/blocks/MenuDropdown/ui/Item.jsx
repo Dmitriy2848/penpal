@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import Button from 'shared/components/blocks/MenuDropdown/ui/Button';
+import Button from 'shared/ui/blocks/MenuDropdown/ui/Button';
 
 const StyledItem = styled(Button)`
 	border: none;

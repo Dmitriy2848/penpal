@@ -1,7 +1,7 @@
 import { Tree } from '@geist-ui/react';
 import useContextMenu from 'entities/ContextMenu/lib/useContextMenu.js';
 import { useRef } from 'react';
-import ContextMenu from 'entities/ContextMenu/index.js';
+import ContextMenu from 'entities/ContextMenu/index.jsx';
 import { Edit2, Trash } from '@geist-ui/icons';
 import { useDispatch } from 'react-redux';
 import { deleteFile, fileEdit } from 'features/FileTree/model/fileTreeSlice.js';

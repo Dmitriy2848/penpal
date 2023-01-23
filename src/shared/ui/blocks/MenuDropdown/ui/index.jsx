@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Container from 'shared/components/blocks/MenuDropdown/ui/Container.jsx';
-import List from 'shared/components/blocks/MenuDropdown/ui/List.jsx';
-import Button from 'shared/components/blocks/MenuDropdown/ui/Button.jsx';
+import Container from 'shared/ui/blocks/MenuDropdown/ui/Container.jsx';
+import List from 'shared/ui/blocks/MenuDropdown/ui/List.jsx';
+import Button from 'shared/ui/blocks/MenuDropdown/ui/Button.jsx';
 const Template = ({
 	active,
 	buttonOnClick,

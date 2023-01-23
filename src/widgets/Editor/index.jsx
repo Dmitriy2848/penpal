@@ -1,10 +1,13 @@
-import { useEditor, EditorContent } from '@tiptap/react';
-import EditorContainer from 'features/Editor/EditorContainer';
-import toolbarExtensions from 'entities/Toolbar/lib/toolbarExtensions.js';
-import Toolbar from 'entities/Toolbar';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEditor, EditorContent } from '@tiptap/react';
+
+import EditorContainer from 'widgets/Editor/ui';
+import toolbarExtensions from 'widgets/Editor/config/extensions.js';
 import { updateFile } from 'features/FileTree/model/fileTreeSlice.js';
-import './Editor.css';
+
+import Toolbar from 'entities/Toolbar';
+
+import 'widgets/Editor/ui/Editor.css';
 
 const template = {
 	type: 'doc',
@@ -12,7 +15,8 @@ const template = {
 		{
 			type: 'heading',
 			attrs: {
-				level: 2
+				level: 2,
+				textAlign: 'center'
 			},
 			content: [
 				{
@@ -24,12 +28,13 @@ const template = {
 	]
 };
 
+// todo оптимизировать рендеры
 const Editor = () => {
 	const dispatch = useDispatch();
-	const fileTree = useSelector((state) => state.fileTree);
-	const id = fileTree.current;
-	const currentContent = fileTree.files.byId[id]?.content;
-	console.log(id);
+	const { current: id, files } = useSelector((state) => state.fileTree);
+	const content = files.byId[id]?.content;
+
+	// todo запомнить последние аргументы и вызвать функцию
 	let block = true;
 	function interval(func, delay) {
 		if (block) {
@@ -47,13 +52,11 @@ const Editor = () => {
 			injectCSS: false,
 			content: template,
 			autofocus: 'end',
-			onBeforeCreate({ editor }) {},
 			onCreate({ editor }) {
-				currentContent && editor.commands.setContent(currentContent);
+				content && editor.commands.setContent(content);
 			},
 			onUpdate({ editor }) {
 				const content = editor.getJSON();
-				console.log(content);
 				interval(() => {
 					dispatch(updateFile({ id, content }));
 				}, 1000);
@@ -61,7 +64,7 @@ const Editor = () => {
 		},
 		[id]
 	);
-	// todo продумай функционал добавления/добавь при монтировании фокус на редакторе
+
 	return (
 		<EditorContainer>
 			<Toolbar editor={editor} />

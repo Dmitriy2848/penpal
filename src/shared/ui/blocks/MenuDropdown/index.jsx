@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Template from 'shared/components/blocks/MenuDropdown/ui';
+import Template from 'shared/ui/blocks/MenuDropdown/ui';
 
 const MenuDropdown = ({ icon, active, list }) => {
 	const [isActive, setIsActive] = useState(false);

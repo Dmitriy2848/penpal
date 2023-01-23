@@ -39,6 +39,7 @@ const initialState = {
 						{
 							type: 'heading',
 							attrs: {
+								textAlign: 'center',
 								level: 2
 							},
 							content: [
@@ -63,6 +64,7 @@ const initialState = {
 						{
 							type: 'heading',
 							attrs: {
+								textAlign: 'center',
 								level: 2
 							},
 							content: [
@@ -87,6 +89,7 @@ const initialState = {
 						{
 							type: 'heading',
 							attrs: {
+								textAlign: 'center',
 								level: 2
 							},
 							content: [
@@ -111,6 +114,7 @@ const initialState = {
 						{
 							type: 'heading',
 							attrs: {
+								textAlign: 'center',
 								level: 2
 							},
 							content: [
@@ -159,6 +163,7 @@ const fileTreeSlice = createSlice({
 								{
 									type: 'heading',
 									attrs: {
+										textAlign: 'center',
 										level: 2
 									},
 									content: [
@@ -242,10 +247,10 @@ const fileTreeSlice = createSlice({
 
 			if (folder.parent) {
 				const parent = state.folders.byId[folder.parent];
-				parent.children.splice(parent.children.indexOf(id));
+				parent.children.splice(parent.children.indexOf(id), 1);
 			}
-		},
-		changeExpand(state) {
+		}
+		/*changeExpand(state) {
 			function changeExpand(tree) {
 				for (let i = 0; i < tree.length; i++) {
 					const node = tree[i];
@@ -259,7 +264,7 @@ const fileTreeSlice = createSlice({
 				}
 			}
 			changeExpand(state);
-		}
+		}*/
 	}
 });
 
@@ -269,7 +274,6 @@ export const {
 	addFile,
 	deleteFile,
 	addFolder,
-	deleteFolder,
-	changeExpand
+	deleteFolder
 } = fileTreeSlice.actions;
 export default fileTreeSlice.reducer;

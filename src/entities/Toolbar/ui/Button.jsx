@@ -54,12 +54,12 @@ const PopoverContent = ({ shortcut }) => {
 	);
 };
 
-const Button = ({ icon, shortcut, isActive, onClick }) => {
+const Button = ({ icon, shortcut, isActive, clickHandler }) => {
 	if (!shortcut) {
 		return (
 			<StyledButton
 				isActive={isActive}
-				onClick={onClick}
+				onClick={clickHandler}
 			>
 				{icon}
 			</StyledButton>
@@ -78,7 +78,7 @@ const Button = ({ icon, shortcut, isActive, onClick }) => {
 		>
 			<StyledButton
 				isActive={isActive}
-				onClick={onClick}
+				onClick={clickHandler}
 			>
 				{icon}
 			</StyledButton>

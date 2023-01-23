@@ -1,51 +1,46 @@
-import { Tree } from '@geist-ui/react';
-import { Folder, File } from 'features/FileTree/ui/index.js';
 import { useSelector } from 'react-redux';
+import { Tree } from '@geist-ui/react';
+
+import { Folder, File } from 'features/FileTree/ui/index.js';
 
 const FileTree = () => {
-	const fileTree = useSelector((state) => state.fileTree);
-	const files = JSON.parse(JSON.stringify(fileTree.files));
-	const folders = JSON.parse(JSON.stringify(fileTree.folders));
-	// todo исправь функцию, оставь данные нетронутыми
-	const denormalize = (files, folders) => {
-		const copyFiles = { ...files };
-		const copyFolders = { ...folders };
+	const { files, folders } = useSelector((state) => state.fileTree);
+
+	const dataTree = (files, folders) => {
+		const copyFiles = JSON.parse(JSON.stringify(files));
+		const copyFolders = JSON.parse(JSON.stringify(folders));
 		const data = [];
-
-		folders.allIds.forEach((id) => {
-			let node = reqFunc(folders.byId[id], copyFiles, copyFolders);
-
+		copyFolders.allIds.forEach((id) => {
+			let node = nodeBuild(copyFolders.byId[id], copyFiles, copyFolders);
 			node && data.push(node);
 		});
 		data.push(...Object.values(copyFiles.byId));
 		return data;
 	};
 
-	const reqFunc = (node, files, folders) => {
-		let parent = node;
+	const nodeBuild = (node, files, folders) => {
+		if (!node) return;
 
-		if (!parent) return;
-
-		if (parent.type === 'file') {
-			delete files.byId[parent.id];
-			files.allIds = files.allIds.filter((id) => id !== parent.id);
-			return parent;
+		if (node.type === 'file') {
+			delete files.byId[node.id];
+			files.allIds.splice(files.allIds.indexOf(node.id), 1);
+			return node;
 		}
-		if (parent.type === 'directory') {
-			delete folders.byId[parent.id];
-			folders.allIds = folders.allIds.filter((id) => id !== parent.id);
+		if (node.type === 'directory') {
+			delete folders.byId[node.id];
+			files.allIds.splice(files.allIds.indexOf(node.id), 1);
 
-			if (!parent.children.length) return parent;
+			if (!node.children.length) return node;
 
-			parent.children = parent.children.map((id) => {
+			node.children = node.children.map((id) => {
 				const child = files.byId[id] || folders.byId[id];
-
-				return reqFunc(child, files, folders);
+				return nodeBuild(child, files, folders);
 			});
 		}
 
-		return parent;
+		return node;
 	};
+
 	const mapCallback = (el) => {
 		if (el.type === 'file') {
 			return (
@@ -69,7 +64,7 @@ const FileTree = () => {
 		}
 	};
 
-	return <Tree>{denormalize(files, folders).map(mapCallback)}</Tree>;
+	return <Tree>{dataTree(files, folders).map(mapCallback)}</Tree>;
 };
 
 export default FileTree;

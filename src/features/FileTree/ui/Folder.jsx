@@ -1,14 +1,15 @@
-import { Tree } from '@geist-ui/react';
-import useContextMenu from 'entities/ContextMenu/lib/useContextMenu.js';
-import ContextMenu from 'entities/ContextMenu/index.js';
-import { Trash, FilePlus } from '@geist-ui/icons';
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { Tree } from '@geist-ui/react';
+import { Trash, FilePlus } from '@geist-ui/icons';
+
 import {
 	addFile,
 	addFolder,
 	deleteFolder
 } from 'features/FileTree/model/fileTreeSlice.js';
-import { useDispatch } from 'react-redux';
+import useContextMenu from 'entities/ContextMenu/lib/useContextMenu.js';
+import ContextMenu from 'entities/ContextMenu/index.jsx';
 
 const Folder = ({ id, name, children }) => {
 	const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const Folder = ({ id, name, children }) => {
 					<ContextMenu.Item
 						text='Создать файл'
 						icon={<FilePlus />}
-						onClick={() => hideMenu(() => dispatch(addFile('yessir', id)))}
+						onClick={() => hideMenu(() => dispatch(addFile('Новый файл', id)))}
 					/>
 					<ContextMenu.Item
 						text='Создать папку'

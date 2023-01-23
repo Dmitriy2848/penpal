@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import Item from 'shared/components/blocks/MenuDropdown/ui/Item';
+import Item from 'shared/ui/blocks/MenuDropdown/ui/Item';
 
 const StyledList = styled.div`
 	position: absolute;
