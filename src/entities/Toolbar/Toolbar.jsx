@@ -1,12 +1,12 @@
+import React from 'react';
+
 import {
 	ToolbarContainer,
 	ButtonsGroup,
 	Button,
 	Separator
 } from 'entities/Toolbar/ui';
-
 import MenuDropdown from 'shared/components/blocks/MenuDropdown/index.jsx';
-
 import { ReactComponent as Bold } from 'shared/assets/icons/bold.svg';
 import { ReactComponent as Blockquote } from 'shared/assets/icons/block-quote.svg';
 import { ReactComponent as CodeBlock } from 'shared/assets/icons/code-block.svg';
@@ -31,11 +31,10 @@ import { ReactComponent as Letter } from 'shared/assets/icons/a.svg';
 import { ReactComponent as Undo } from 'shared/assets/icons/rotate-left.svg';
 import { ReactComponent as Redo } from 'shared/assets/icons/rotate-right.svg';
 
-const Toolbar = ({ editor }) => {
+const Toolbar = React.memo(({ editor }) => {
 	if (!editor) {
 		return null;
 	}
-
 	const mapFn = (group, i, arr) => (
 		<ButtonsGroup
 			key={i}
@@ -389,6 +388,6 @@ const Toolbar = ({ editor }) => {
 	];
 
 	return <ToolbarContainer>{toolbarElements.map(mapFn)}</ToolbarContainer>;
-};
+});
 
 export default Toolbar;

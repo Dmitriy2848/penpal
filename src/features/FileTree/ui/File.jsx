@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import ContextMenu from 'entities/ContextMenu/index.js';
 import { Edit2, Trash } from '@geist-ui/icons';
 import { useDispatch } from 'react-redux';
-import { deleteFile } from 'features/FileTree/model/fileTreeSlice.js';
+import { deleteFile, fileEdit } from 'features/FileTree/model/fileTreeSlice.js';
 
 const File = ({ id, name }) => {
 	const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const File = ({ id, name }) => {
 					<ContextMenu.Item
 						text='Редактировать'
 						icon={<Edit2 />}
-						onClick={() => hideMenu(() => console.log('edit'))}
+						onClick={() => hideMenu(() => dispatch(fileEdit(id)))}
 					/>
 					<ContextMenu.Item
 						text='Удалить'

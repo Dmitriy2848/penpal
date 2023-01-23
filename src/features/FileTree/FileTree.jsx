@@ -6,7 +6,7 @@ const FileTree = () => {
 	const fileTree = useSelector((state) => state.fileTree);
 	const files = JSON.parse(JSON.stringify(fileTree.files));
 	const folders = JSON.parse(JSON.stringify(fileTree.folders));
-
+	// todo исправь функцию, оставь данные нетронутыми
 	const denormalize = (files, folders) => {
 		const copyFiles = { ...files };
 		const copyFolders = { ...folders };
