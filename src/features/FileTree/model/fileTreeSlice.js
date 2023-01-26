@@ -1,137 +1,6 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
+import initialState from 'features/FileTree/model/initialState.js';
 
-const initialState = {
-	current: '',
-	folders: {
-		byId: {
-			2: {
-				id: 2,
-				date: Date.now(),
-				type: 'directory',
-				name: 'папка1',
-				initialExpand: false,
-				parent: null,
-				children: [12, 24, 3]
-			},
-			24: {
-				id: 24,
-				date: Date.now(),
-				type: 'directory',
-				name: 'папка2',
-				initialExpand: false,
-				parent: 2,
-				children: [34]
-			}
-		},
-		allIds: [2, 24]
-	},
-	files: {
-		byId: {
-			12: {
-				id: 12,
-				date: Date.now(),
-				type: 'file',
-				name: 'файл1',
-				parent: 2,
-				content: {
-					type: 'doc',
-					content: [
-						{
-							type: 'heading',
-							attrs: {
-								textAlign: 'center',
-								level: 2
-							},
-							content: [
-								{
-									type: 'text',
-									text: 'файл1'
-								}
-							]
-						}
-					]
-				}
-			},
-			34: {
-				id: 34,
-				date: Date.now(),
-				type: 'file',
-				name: 'файл2',
-				parent: 24,
-				content: {
-					type: 'doc',
-					content: [
-						{
-							type: 'heading',
-							attrs: {
-								textAlign: 'center',
-								level: 2
-							},
-							content: [
-								{
-									type: 'text',
-									text: 'файл2'
-								}
-							]
-						}
-					]
-				}
-			},
-			3: {
-				id: 3,
-				date: Date.now(),
-				type: 'file',
-				name: 'файл3',
-				parent: 2,
-				content: {
-					type: 'doc',
-					content: [
-						{
-							type: 'heading',
-							attrs: {
-								textAlign: 'center',
-								level: 2
-							},
-							content: [
-								{
-									type: 'text',
-									text: 'файл3'
-								}
-							]
-						}
-					]
-				}
-			},
-			13: {
-				id: 13,
-				date: Date.now(),
-				type: 'file',
-				name: 'файл4',
-				parent: null,
-				content: {
-					type: 'doc',
-					content: [
-						{
-							type: 'heading',
-							attrs: {
-								textAlign: 'center',
-								level: 2
-							},
-							content: [
-								{
-									type: 'text',
-									text: 'файл4'
-								}
-							]
-						}
-					]
-				}
-			}
-		},
-		allIds: [12, 34, 3, 13]
-	}
-};
-//todo добавить все возможные action creators и изучи api для подключения к зметке
 const fileTreeSlice = createSlice({
 	name: 'fileSystem',
 	initialState,
@@ -181,13 +50,11 @@ const fileTreeSlice = createSlice({
 		},
 		updateFile(state, action) {
 			const { id, content } = action.payload;
-			console.log(action.payload);
 			state.files.byId[id].content = content;
 		},
 		deleteFile(state, action) {
 			const fileId = action.payload;
 			const folderId = state.files.byId[fileId].parent;
-			console.log(folderId);
 			if (folderId) {
 				state.folders.byId[folderId].children = state.folders.byId[
 					folderId
@@ -250,21 +117,6 @@ const fileTreeSlice = createSlice({
 				parent.children.splice(parent.children.indexOf(id), 1);
 			}
 		}
-		/*changeExpand(state) {
-			function changeExpand(tree) {
-				for (let i = 0; i < tree.length; i++) {
-					const node = tree[i];
-					if (node.type === 'directory') {
-						console.log(state[node.id]);
-						state[node.id].initialExpand = !state[node.id].initialExpand;
-					}
-					if (node.files?.length) {
-						changeExpand(node.files);
-					}
-				}
-			}
-			changeExpand(state);
-		}*/
 	}
 });
 

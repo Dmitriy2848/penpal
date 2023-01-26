@@ -1,15 +1,19 @@
-import { Tree } from '@geist-ui/react';
-import useContextMenu from 'entities/ContextMenu/lib/useContextMenu.js';
 import { useRef } from 'react';
-import ContextMenu from 'entities/ContextMenu/index.jsx';
-import { Edit2, Trash } from '@geist-ui/icons';
 import { useDispatch } from 'react-redux';
+
 import { deleteFile, fileEdit } from 'features/FileTree/model/fileTreeSlice.js';
+import Context, {
+	useContextMenu
+} from 'shared/ui/molecules/Menus/Context/index';
+import { File as FileUI } from 'shared/ui/molecules/Tree';
+
+import { ReactComponent as Trash } from 'shared/assets/icons/trash.svg';
+import { ReactComponent as Edit } from 'shared/assets/icons/edit-box.svg';
 
 const File = ({ id, name }) => {
 	const dispatch = useDispatch();
-	const fileRef = useRef();
-	const { clicked, setClicked, points, setPoints } = useContextMenu(fileRef);
+	const ref = useRef();
+	const { clicked, setClicked, points, setPoints } = useContextMenu(ref);
 
 	const hideMenu = (onClick) => {
 		onClick();
@@ -29,31 +33,31 @@ const File = ({ id, name }) => {
 
 	return (
 		<>
-			<Tree.File
+			<FileUI
 				name={name}
 				onContextMenu={onContextMenuHandler}
+				onClick={() => hideMenu(() => dispatch(fileEdit(id)))}
 			/>
 			{clicked && (
-				<ContextMenu.Container
-					ref={fileRef}
+				<Context.Container
+					ref={ref}
 					x={points.x}
 					y={points.y}
 					closeFunction={() => setClicked(false)}
 				>
-					<ContextMenu.Item
+					<Context.Item
 						text='Редактировать'
-						icon={<Edit2 />}
+						icon={<Edit />}
 						onClick={() => hideMenu(() => dispatch(fileEdit(id)))}
 					/>
-					<ContextMenu.Item
+					<Context.Item
 						text='Удалить'
 						icon={<Trash />}
 						onClick={() => hideMenu(() => dispatch(deleteFile(id)))}
 					/>
-				</ContextMenu.Container>
+				</Context.Container>
 			)}
 		</>
 	);
 };
-
 export default File;

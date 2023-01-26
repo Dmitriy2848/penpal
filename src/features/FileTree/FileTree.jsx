@@ -1,7 +1,22 @@
 import { useSelector } from 'react-redux';
-import { Tree } from '@geist-ui/react';
+import styled from 'styled-components';
 
-import { Folder, File } from 'features/FileTree/ui/index.js';
+import { Folder, File, Header } from 'features/FileTree/ui/index.js';
+import Tree from 'shared/ui/molecules/Tree/index.jsx';
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	width: 100%;
+	height: calc(100vh - 40px);
+`;
+
+const TreeWrapper = styled.div`
+	height: 100%;
+	border-right: 1px solid #f5f5f5;
+	padding: 10px;
+`;
 
 const FileTree = () => {
 	const { files, folders } = useSelector((state) => state.fileTree);
@@ -41,7 +56,7 @@ const FileTree = () => {
 		return node;
 	};
 
-	const mapCallback = (el) => {
+	const mapFn = (el) => {
 		if (el.type === 'file') {
 			return (
 				<File
@@ -58,30 +73,24 @@ const FileTree = () => {
 					key={el.id}
 					id={el.id}
 				>
-					{el.children?.map(mapCallback)}
+					{el.children?.map(mapFn)}
 				</Folder>
 			);
 		}
 	};
 
-	return <Tree>{dataTree(files, folders).map(mapCallback)}</Tree>;
+	return (
+		<Container
+			direction='column'
+			h='calc(100vh - 40px)'
+			w='100%'
+		>
+			<Header />
+			<TreeWrapper>
+				<Tree>{dataTree(files, folders).map(mapFn)}</Tree>
+			</TreeWrapper>
+		</Container>
+	);
 };
 
 export default FileTree;
-/* Тестовая функция перебора массива для изменения значения initialExpand
-function changeExpand(tree, expand) {
-	console.log(arguments[1]);
-	for (let i = 0; i < tree.length; i++) {
-		let node = tree[i];
-		if (Array.isArray(node)) {
-			changeExpand(node, expand);
-		}
-		if (node.type === 'directory') {
-			node.initialExpand = expand;
-		}
-		if (node.files?.length) {
-			changeExpand(node.files, expand);
-		}
-	}
-}
-*/

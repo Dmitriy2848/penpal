@@ -1,15 +1,19 @@
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { Tree } from '@geist-ui/react';
-import { Trash, FilePlus } from '@geist-ui/icons';
 
 import {
 	addFile,
 	addFolder,
 	deleteFolder
 } from 'features/FileTree/model/fileTreeSlice.js';
-import useContextMenu from 'entities/ContextMenu/lib/useContextMenu.js';
-import ContextMenu from 'entities/ContextMenu/index.jsx';
+import { Folder as FolderUI } from 'shared/ui/molecules/Tree';
+import Context, {
+	useContextMenu
+} from 'shared/ui/molecules/Menus/Context/index.jsx';
+
+import { ReactComponent as Trash } from 'shared/assets/icons/trash.svg';
+import { ReactComponent as FileAdd } from 'shared/assets/icons/file-add.svg';
+import { ReactComponent as FolderAdd } from 'shared/assets/icons/folder-add.svg';
 
 const Folder = ({ id, name, children }) => {
 	const dispatch = useDispatch();
@@ -35,37 +39,38 @@ const Folder = ({ id, name, children }) => {
 
 	return (
 		<>
-			<Tree.Folder
+			<FolderUI
 				name={name}
 				onContextMenu={onContextMenuHandler}
+				onClick
 			>
 				{children}
-			</Tree.Folder>
+			</FolderUI>
 			{clicked && (
-				<ContextMenu.Container
+				<Context.Container
 					ref={folderRef}
 					x={points.x}
 					y={points.y}
 					closeFunction={() => setClicked(false)}
 				>
-					<ContextMenu.Item
+					<Context.Item
 						text='Создать файл'
-						icon={<FilePlus />}
+						icon={<FileAdd />}
 						onClick={() => hideMenu(() => dispatch(addFile('Новый файл', id)))}
 					/>
-					<ContextMenu.Item
+					<Context.Item
 						text='Создать папку'
-						icon={<FilePlus />}
+						icon={<FolderAdd />}
 						onClick={() =>
 							hideMenu(() => dispatch(addFolder('Без названия', id)))
 						}
 					/>
-					<ContextMenu.Item
+					<Context.Item
 						text='Удалить'
 						icon={<Trash />}
 						onClick={() => hideMenu(() => dispatch(deleteFolder(id)))}
 					/>
-				</ContextMenu.Container>
+				</Context.Container>
 			)}
 		</>
 	);

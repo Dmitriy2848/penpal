@@ -1,13 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEditor, EditorContent } from '@tiptap/react';
 
-import EditorContainer from 'widgets/Editor/ui';
 import toolbarExtensions from 'widgets/Editor/config/extensions.js';
 import { updateFile } from 'features/FileTree/model/fileTreeSlice.js';
-
 import Toolbar from 'entities/Toolbar';
+import Container from 'shared/ui/atoms/Container/index.jsx';
 
 import 'widgets/Editor/ui/Editor.css';
+import Header from 'widgets/Editor/ui/index.jsx';
+
+import Empty from 'widgets/Editor/ui/Empty.jsx';
+import Content from 'widgets/Editor/ui/Content.jsx';
 
 const template = {
 	type: 'doc',
@@ -34,7 +37,7 @@ const Editor = () => {
 	const { current: id, files } = useSelector((state) => state.fileTree);
 	const content = files.byId[id]?.content;
 
-	// todo запомнить последние аргументы и вызвать функцию
+	// todo запомнить последние аргументы
 	let block = true;
 	function interval(func, delay) {
 		if (block) {
@@ -50,7 +53,7 @@ const Editor = () => {
 		{
 			extensions: toolbarExtensions,
 			injectCSS: false,
-			content: template,
+			content: '',
 			autofocus: 'end',
 			onCreate({ editor }) {
 				content && editor.commands.setContent(content);
@@ -66,13 +69,20 @@ const Editor = () => {
 	);
 
 	return (
-		<EditorContainer>
+		<Container.Flex
+			w='100%'
+			direction='column'
+			items='center'
+			pos='relative'
+		>
+			<Header />
 			<Toolbar editor={editor} />
-			<EditorContent
-				editor={editor}
-				style={{ width: '100%', height: '100%' }}
-			/>
-		</EditorContainer>
+
+			<Content>
+				<EditorContent editor={editor} />
+				{!id && <Empty />}
+			</Content>
+		</Container.Flex>
 	);
 };
 

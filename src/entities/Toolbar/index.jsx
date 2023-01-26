@@ -1,54 +1,45 @@
-import { memo } from 'react';
-
-import {
-	ToolbarContainer,
-	ButtonsGroup,
-	Button,
-	Separator
-} from 'entities/Toolbar/ui';
 import toolbarElements from 'entities/Toolbar/lib.jsx';
-import MenuDropdown from 'shared/ui/blocks/MenuDropdown/index.jsx';
 
-const Toolbar = memo(({ editor }) => {
+import { ElementsContainer, BGroup, Separator } from 'entities/Toolbar/ui.jsx';
+
+import Dropdown from 'shared/ui/molecules/Menus/Dropdown/index.jsx';
+import Button from 'shared/ui/atoms/Button/index.jsx';
+
+const Toolbar = ({ editor }) => {
 	if (!editor) {
 		return null;
 	}
 
 	const mapFn = (group, i, arr) => (
-		<ButtonsGroup
-			key={i}
-			first={i === 0}
-			last={i === arr.length - 1}
-		>
+		<BGroup key={i}>
 			{group.map((el, i) => {
 				if (el.type === 'button') {
 					return (
 						<Button
 							key={i}
 							icon={el.icon}
-							shortcut={el.shortcut}
-							isActive={el.active}
-							clickHandler={el.clickHandler}
+							primary={el.primary}
+							onClick={el.onClick}
 						/>
 					);
 				} else if (el.type === 'menu') {
 					return (
-						<MenuDropdown
-							key={i}
+						<Dropdown
 							icon={el.icon}
-							active={el.active}
-							list={el.list}
+							primary={el.active}
+							menuList={el.list}
+							key={i}
 						/>
 					);
 				}
 			})}
 			{i !== arr.length - 1 && <Separator />}
-		</ButtonsGroup>
+		</BGroup>
 	);
 
 	return (
-		<ToolbarContainer>{toolbarElements(editor).map(mapFn)}</ToolbarContainer>
+		<ElementsContainer>{toolbarElements(editor).map(mapFn)}</ElementsContainer>
 	);
-});
+};
 
 export default Toolbar;
