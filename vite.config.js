@@ -5,6 +5,7 @@ import viteSvgr from 'vite-plugin-svgr';
 
 // todo найди другой способ определения alias`ов
 export default defineConfig({
+	base: '/penpal/',
 	plugins: [react(), viteSvgr()],
 	resolve: {
 		alias: {
