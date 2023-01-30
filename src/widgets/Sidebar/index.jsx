@@ -9,6 +9,7 @@ const Container = styled.div`
 	align-items: center;
 
 	min-width: 250px;
+	max-width: 250px;
 	height: 100vh;
 `;
 

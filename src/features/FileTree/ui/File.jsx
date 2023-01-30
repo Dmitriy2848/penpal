@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { deleteFile, fileEdit } from 'features/FileTree/model/fileTreeSlice.js';
 import Context, {
@@ -12,6 +12,7 @@ import { ReactComponent as Edit } from 'shared/assets/icons/edit-box.svg';
 
 const File = ({ id, name }) => {
 	const dispatch = useDispatch();
+
 	const ref = useRef();
 	const { clicked, setClicked, points, setPoints } = useContextMenu(ref);
 

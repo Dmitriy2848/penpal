@@ -1,22 +1,13 @@
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 
-import { Folder, File, Header } from 'features/FileTree/ui/index.js';
+import {
+	Folder,
+	File,
+	Header,
+	Container,
+	TreeWrapper
+} from 'features/FileTree/ui';
 import Tree from 'shared/ui/molecules/Tree/index.jsx';
-
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-
-	width: 100%;
-	height: calc(100vh - 40px);
-`;
-
-const TreeWrapper = styled.div`
-	height: 100%;
-	border-right: 1px solid #f5f5f5;
-	padding: 10px;
-`;
 
 const FileTree = () => {
 	const { files, folders } = useSelector((state) => state.fileTree);
@@ -60,7 +51,7 @@ const FileTree = () => {
 		if (el.type === 'file') {
 			return (
 				<File
-					name={el.name}
+					name={el.content.content?.[0].content?.[0].text || 'Без названия'}
 					key={el.id}
 					id={el.id}
 				/>
