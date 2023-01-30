@@ -2,44 +2,11 @@
 
 ### Еxpands the exocortex
 
------
+### Stack:
 
-### Tech stack:
-
-<div style='display: flex; align-items: center;'>
-    <span 
-        style="background-color: #F7E01D; color: black; padding: 4px; border-radius: 5px; "
-    > 
-        JavaScript 
-    </span> 
-    <span 
-        style="background-color: #4CAE4F; color: #fff; padding: 4px; border-radius: 5px; margin-left: 5px"
-    > 
-        Node 
-    </span>
-    <span 
-        style="background-color: #087EA4; color: #fff; padding: 4px; border-radius: 5px; margin-left: 5px"
-    > 
-        React 
-    </span>
-    <span 
-        style="background-color: #764ABC; color: #fff; padding: 4px; border-radius: 5px; margin-left: 5px"
-    > 
-        Redux 
-    </span>
-    <span 
-        style="background-color: #000; color: #fff; padding: 4px; border-radius: 5px; margin-left: 5px"
-    > 
-        TipTap 
-    </span>
-    <span 
-        style="background-color: #D36DAB; color: #fff; padding: 4px; border-radius: 5px; margin-left: 5px"
-    > 
-        Styled Components 
-    </span>
-    <span 
-        style="background-color: #4E7FEC; color: #fff; padding: 4px; border-radius: 5px; margin-left: 5px"
-    > 
-        FSD 
-    </span>
-</div>
+![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
