@@ -1,6 +1,10 @@
-import toolbarElements from 'entities/Toolbar/lib.jsx';
+import toolbarElements from 'features/Editor/lib/toolbarElements.jsx';
 
-import { ElementsContainer, BGroup, Separator } from 'entities/Toolbar/ui.jsx';
+import {
+	ElementsContainer,
+	BGroup,
+	Separator
+} from 'features/Editor/ui/Toolbar/ui.jsx';
 
 import Dropdown from 'shared/ui/molecules/Menus/Dropdown/index.jsx';
 import Button from 'shared/ui/atoms/Button/index.jsx';

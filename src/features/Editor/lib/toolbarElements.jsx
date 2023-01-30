@@ -280,7 +280,8 @@ const toolbarElements = (editor) => [
 					icon: <Highlighter fill='#debe1d' />,
 					fill: '#debe1d',
 					primary: editor.isActive('highlight', { color: '#debe1d' }),
-					onClick: () => editor.chain().focus().toggleHighlight('#debe1d').run()
+					onClick: () =>
+						editor.chain().focus().toggleHighlight({ color: '#debe1d' }).run()
 				},
 				{
 					type: 'button',
@@ -288,7 +289,8 @@ const toolbarElements = (editor) => [
 					icon: <Highlighter fill='#6ade1d' />,
 					fill: '#6ade1d',
 					primary: editor.isActive('highlight', { color: '#6ade1d' }),
-					onClick: () => editor.chain().focus().toggleHighlight('#6ade1d').run()
+					onClick: () =>
+						editor.chain().focus().toggleHighlight({ color: '#6ade1d' }).run()
 				},
 				{
 					type: 'button',
@@ -296,7 +298,8 @@ const toolbarElements = (editor) => [
 					icon: <Highlighter fill='#1d54de' />,
 					fill: '#1d54de',
 					primary: editor.isActive('highlight', { color: '#1d54de' }),
-					onClick: () => editor.chain().focus().toggleHighlight('#1d54de').run()
+					onClick: () =>
+						editor.chain().focus().toggleHighlight({ color: '#1d54de' }).run()
 				}
 			]
 		}

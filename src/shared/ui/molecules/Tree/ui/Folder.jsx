@@ -36,6 +36,7 @@ const Header = styled.div`
 		background-color: #eaeaea;
 	}
 `;
+
 const ChildrenContainer = styled.div`
 	position: relative;
 	height: 0;
